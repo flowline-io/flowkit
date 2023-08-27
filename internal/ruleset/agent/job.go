@@ -3,11 +3,11 @@ package agent
 import (
 	"fyne.io/fyne/v2"
 	"github.com/allegro/bigcache/v3"
+	"github.com/flowline-io/linkit/internal/pkg/client"
+	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/linkit/internal/pkg/util"
+	"github.com/flowline-io/linkit/internal/ruleset/agent/bot"
 	"github.com/robfig/cron/v3"
-	"github.com/sysatom/linkit/internal/pkg/client"
-	"github.com/sysatom/linkit/internal/pkg/logs"
-	"github.com/sysatom/linkit/internal/pkg/util"
-	"github.com/sysatom/linkit/internal/ruleset/agent/bot"
 )
 
 type agentJob struct {

@@ -1,4 +1,4 @@
-module github.com/sysatom/linkit
+module github.com/flowline-io/linkit
 
 go 1.20
 

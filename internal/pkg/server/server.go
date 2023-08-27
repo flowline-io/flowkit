@@ -1,11 +1,11 @@
 package server
 
 import (
+	"github.com/flowline-io/linkit/internal/pkg/logs"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
-	"github.com/sysatom/linkit/internal/pkg/logs"
 	"net"
 )
 

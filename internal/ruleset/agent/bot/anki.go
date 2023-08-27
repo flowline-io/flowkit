@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"github.com/flowline-io/linkit/internal/pkg/client"
+	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/linkit/internal/pkg/types"
 	"github.com/go-resty/resty/v2"
-	"github.com/sysatom/linkit/internal/pkg/client"
-	"github.com/sysatom/linkit/internal/pkg/logs"
-	"github.com/sysatom/linkit/internal/pkg/types"
 	"net/http"
 	"strconv"
 )

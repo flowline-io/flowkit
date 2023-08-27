@@ -3,8 +3,8 @@ package setting
 import (
 	"encoding/json"
 	"fyne.io/fyne/v2"
-	"github.com/sysatom/linkit/internal/pkg/constant"
-	"github.com/sysatom/linkit/internal/pkg/types"
+	"github.com/flowline-io/linkit/internal/pkg/constant"
+	"github.com/flowline-io/linkit/internal/pkg/types"
 )
 
 var s = &Setting{}

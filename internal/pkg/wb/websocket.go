@@ -2,9 +2,9 @@ package wb
 
 import (
 	"fyne.io/fyne/v2"
+	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/linkit/internal/pkg/setting"
 	"github.com/gorilla/websocket"
-	"github.com/sysatom/linkit/internal/pkg/logs"
-	"github.com/sysatom/linkit/internal/pkg/setting"
 	"net/http"
 	"net/url"
 	"time"

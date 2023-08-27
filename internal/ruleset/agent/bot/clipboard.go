@@ -3,9 +3,9 @@ package bot
 import (
 	"fyne.io/fyne/v2"
 	"github.com/allegro/bigcache/v3"
-	"github.com/sysatom/linkit/internal/pkg/client"
-	"github.com/sysatom/linkit/internal/pkg/logs"
-	"github.com/sysatom/linkit/internal/pkg/types"
+	"github.com/flowline-io/linkit/internal/pkg/client"
+	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/linkit/internal/pkg/types"
 )
 
 const (

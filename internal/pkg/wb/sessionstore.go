@@ -2,9 +2,9 @@ package wb
 
 import (
 	"container/list"
+	"github.com/flowline-io/linkit/internal/pkg/logs"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
-	"github.com/sysatom/linkit/internal/pkg/logs"
 	"sync"
 	"time"
 )

@@ -1,8 +1,8 @@
 package event
 
 import (
+	"github.com/flowline-io/linkit/internal/pkg/types"
 	"github.com/gookit/event"
-	"github.com/sysatom/linkit/internal/pkg/types"
 )
 
 type ListenerFunc func(data types.KV) error

@@ -3,11 +3,11 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/flowline-io/linkit/internal/pkg/constant"
+	"github.com/flowline-io/linkit/internal/pkg/setting"
+	"github.com/flowline-io/linkit/internal/pkg/types"
+	"github.com/flowline-io/linkit/internal/pkg/util"
 	"github.com/go-resty/resty/v2"
-	"github.com/sysatom/linkit/internal/pkg/constant"
-	"github.com/sysatom/linkit/internal/pkg/setting"
-	"github.com/sysatom/linkit/internal/pkg/types"
-	"github.com/sysatom/linkit/internal/pkg/util"
 	"net/http"
 	"time"
 )
