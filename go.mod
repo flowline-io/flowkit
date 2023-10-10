@@ -3,7 +3,7 @@ module github.com/flowline-io/linkit
 go 1.20
 
 require (
-	fyne.io/fyne/v2 v2.4.0
+	fyne.io/fyne/v2 v2.4.1
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/go-resty/resty/v2 v2.9.1
 	github.com/gofiber/fiber/v2 v2.49.2
