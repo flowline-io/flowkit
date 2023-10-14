@@ -1,8 +1,7 @@
 package wb
 
 import (
-	"fyne.io/fyne/v2"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/gorilla/websocket"
 	"net/http"
@@ -12,25 +11,25 @@ import (
 
 var sessionStore = NewSessionStore(idleSessionTimeout + 15*time.Second)
 
-func Init(app fyne.App, window fyne.Window) {
+func Init() {
 	u := url.URL{
 		Scheme: "ws",
 		Host:   setting.Get().ServerHost,
 		Path:   "/session",
 	}
-	logs.Info("connecting to %s", u.String())
+	flog.Info("connecting to %s", u.String())
 
 	header := http.Header{}
 	header.Set("X-AccessToken", setting.Get().AccessToken)
 
 	conn, _, err := websocket.DefaultDialer.Dial(u.String(), header)
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 		return
 	}
 
 	sess, count := sessionStore.NewSession(conn, "")
-	logs.Info("ws: session started %s %d", sess.sid, count)
+	flog.Info("ws: session started %s %d", sess.sid, count)
 
 	// Do work in goroutines to return from serveWebSocket() to release file pointers.
 	// Otherwise, "too many open files" will happen.

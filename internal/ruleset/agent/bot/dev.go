@@ -2,7 +2,7 @@ package bot
 
 import (
 	"github.com/flowline-io/flowkit/internal/pkg/client"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"time"
 )
@@ -21,6 +21,6 @@ func DevImport(c *client.Tinode) {
 		},
 	})
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 	}
 }

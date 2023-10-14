@@ -2,7 +2,7 @@ package wb
 
 import (
 	"encoding/json"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/gorilla/websocket"
 	"sync"
@@ -112,7 +112,7 @@ func (s *Session) queueOut(msg any) bool {
 	case s.send <- msg:
 	default:
 		// Never block here since it may also block the topic's run() goroutine.
-		logs.Warn("s.queueOut: session's send queue full %s", s.sid)
+		flog.Warn("s.queueOut: session's send queue full %s", s.sid)
 		return false
 	}
 	return true
@@ -128,7 +128,7 @@ func (s *Session) queueOutBytes(data []byte) bool {
 	select {
 	case s.send <- data:
 	default:
-		logs.Warn("s.queueOutBytes: session's send queue full %s", s.sid)
+		flog.Warn("s.queueOutBytes: session's send queue full %s", s.sid)
 		return false
 	}
 	return true
@@ -177,7 +177,7 @@ func (s *Session) dispatchRaw(raw []byte) {
 	var msg types.ServerComMessage
 
 	if atomic.LoadInt32(&s.terminating) > 0 {
-		logs.Warn("s.dispatch: message received on a terminating session %s", s.sid)
+		flog.Warn("s.dispatch: message received on a terminating session %s", s.sid)
 		return
 	}
 
@@ -193,11 +193,11 @@ func (s *Session) dispatchRaw(raw []byte) {
 		toLog = raw[:512]
 		truncated = "<...>"
 	}
-	logs.Info("in: '%s%s' sid='%s'", toLog, truncated, s.sid)
+	flog.Info("in: '%s%s' sid='%s'", toLog, truncated, s.sid)
 
 	if err := json.Unmarshal(raw, &msg); err != nil {
 		// Malformed message
-		logs.Warn("s.dispatch %s %s", err, s.sid)
+		flog.Warn("s.dispatch %s %s", err, s.sid)
 		return
 	}
 
@@ -232,7 +232,7 @@ func (s *Session) readLoop() {
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure,
 				websocket.CloseNormalClosure) {
-				logs.Warn("ws: readLoop %s %s", s.sid, err)
+				flog.Warn("ws: readLoop %s %s", s.sid, err)
 			}
 			return
 		}
@@ -242,20 +242,20 @@ func (s *Session) readLoop() {
 
 func (s *Session) sendMessage(msg any) bool {
 	if len(s.send) > sendQueueLimit {
-		logs.Warn("ws: outbound queue limit exceeded %s", s.sid)
+		flog.Warn("ws: outbound queue limit exceeded %s", s.sid)
 		return false
 	}
 
 	data, err := json.Marshal(msg)
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 		return false
 	}
 
 	if err := wsWrite(s.ws, websocket.TextMessage, data); err != nil {
 		if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure,
 			websocket.CloseNormalClosure) {
-			logs.Warn("ws: writeLoop %s %s", s.sid, err)
+			flog.Warn("ws: writeLoop %s %s", s.sid, err)
 		}
 		return false
 	}
@@ -301,7 +301,7 @@ func (s *Session) writeLoop() {
 			if err := wsWrite(s.ws, websocket.PongMessage, nil); err != nil {
 				if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure,
 					websocket.CloseNormalClosure) {
-					logs.Warn("ws: writeLoop pong %s %s", s.sid, err)
+					flog.Warn("ws: writeLoop pong %s %s", s.sid, err)
 				}
 				return
 			}

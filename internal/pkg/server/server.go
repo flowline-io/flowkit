@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -22,7 +22,7 @@ func EmbedServer(port string) {
 
 		err := app.Listen(net.JoinHostPort("127.0.0.1", port))
 		if err != nil {
-			logs.Fatal("embed server error")
+			flog.Fatal("embed server error")
 		}
 	}()
 }

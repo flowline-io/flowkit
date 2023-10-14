@@ -1,9 +1,6 @@
 package setting
 
 import (
-	"encoding/json"
-	"fyne.io/fyne/v2"
-	"github.com/flowline-io/flowkit/internal/pkg/constant"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 )
 
@@ -17,16 +14,16 @@ type Setting struct {
 	InstructSwitch  types.KV
 }
 
-func LoadPreferences(p fyne.Preferences) {
-	s.ServerHost = p.String(constant.ServerPreferenceKey)
-	s.LogPath = p.String(constant.LogPreferenceKey)
-	s.AccessToken = p.String(constant.TokenPreferenceKey)
-	s.RequestInterval = p.Int(constant.IntervalPreferenceKey)
+func LoadPreferences(_ any) {
+	//s.ServerHost = p.String(constant.ServerPreferenceKey)
+	//s.LogPath = p.String(constant.LogPreferenceKey)
+	//s.AccessToken = p.String(constant.TokenPreferenceKey)
+	//s.RequestInterval = p.Int(constant.IntervalPreferenceKey)
 
-	data := p.String(constant.InstructPreferenceKey)
-	instructSwitch := types.KV{}
-	_ = json.Unmarshal([]byte(data), &instructSwitch)
-	s.InstructSwitch = instructSwitch
+	//data := p.String(constant.InstructPreferenceKey)
+	//instructSwitch := types.KV{}
+	//_ = json.Unmarshal([]byte(data), &instructSwitch)
+	//s.InstructSwitch = instructSwitch
 }
 
 func Get() *Setting {

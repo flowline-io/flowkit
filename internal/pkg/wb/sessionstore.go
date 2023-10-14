@@ -2,7 +2,7 @@ package wb
 
 import (
 	"container/list"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"sync"
@@ -34,10 +34,10 @@ func (w *boundedWaitGroup) Done() {
 	select {
 	case _, ok := <-w.sem:
 		if !ok {
-			logs.Warn("boundedWaitGroup.sem closed.")
+			flog.Warn("boundedWaitGroup.sem closed.")
 		}
 	default:
-		logs.Warn("boundedWaitGroup.Done() called before Add().")
+		flog.Warn("boundedWaitGroup.Done() called before Add().")
 	}
 	w.wg.Done()
 }
@@ -72,7 +72,7 @@ func (ss *SessionStore) NewSession(conn any, sid string) (*Session, int) {
 
 	ss.lock.Lock()
 	if _, found := ss.sessCache[s.sid]; found {
-		logs.Warn("ERROR! duplicate session ID %s", s.sid)
+		flog.Warn("ERROR! duplicate session ID %s", s.sid)
 	}
 	ss.lock.Unlock()
 
@@ -80,7 +80,7 @@ func (ss *SessionStore) NewSession(conn any, sid string) (*Session, int) {
 	case *websocket.Conn:
 		s.ws = c
 	default:
-		logs.Warn("session: unknown connection type %s", conn)
+		flog.Warn("session: unknown connection type %s", conn)
 	}
 
 	s.send = make(chan any, sendQueueLimit+32) // buffered
@@ -168,7 +168,7 @@ func (ss *SessionStore) Shutdown() {
 		s.stopSession(data)
 	}
 
-	logs.Info("SessionStore shut down, sessions terminated: %s", len(ss.sessCache))
+	flog.Info("SessionStore shut down, sessions terminated: %s", len(ss.sessCache))
 }
 
 // NewSessionStore initializes a session store.

@@ -5,7 +5,7 @@ import (
 	"fyne.io/fyne/v2"
 	"github.com/allegro/bigcache/v3"
 	"github.com/flowline-io/flowkit/internal/pkg/client"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct/bot"
@@ -22,7 +22,7 @@ type instructJob struct {
 func (j *instructJob) Run() {
 	res, err := j.client.Pull()
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 		return
 	}
 	if res == nil {
@@ -52,7 +52,7 @@ func (j *instructJob) Run() {
 		}
 		err = RunInstruct(j.app, j.window, j.cache, item)
 		if err != nil {
-			logs.Error(fmt.Errorf("instruct run job failed %s %s %s", item.Bot, item.No, err))
+			flog.Error(fmt.Errorf("instruct run job failed %s %s %s", item.Bot, item.No, err))
 		}
 	}
 }
@@ -67,7 +67,7 @@ func RunInstruct(app fyne.App, window fyne.Window, cache *bigcache.BigCache, ite
 				continue
 			}
 			// run instruct
-			logs.Info("[instruct] %s %s", item.Bot, item.No)
+			flog.Info("[instruct] %s %s", item.Bot, item.No)
 			data := types.KV{}
 			if v, ok := item.Content.(map[string]any); ok {
 				data = v

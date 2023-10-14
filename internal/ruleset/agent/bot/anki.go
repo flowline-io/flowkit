@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/flowline-io/flowkit/internal/pkg/client"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/go-resty/resty/v2"
 	"net/http"
@@ -22,7 +22,7 @@ const (
 func AnkiStats(c *client.Tinode) {
 	html, err := getCollectionStatsHTML()
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 		return
 	}
 	_, err = c.Agent(types.AgentContent{
@@ -33,14 +33,14 @@ func AnkiStats(c *client.Tinode) {
 		},
 	})
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 	}
 }
 
 func AnkiReview(c *client.Tinode) {
 	num, err := getNumCardsReviewedToday()
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 		return
 	}
 	_, err = c.Agent(types.AgentContent{
@@ -51,7 +51,7 @@ func AnkiReview(c *client.Tinode) {
 		},
 	})
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 	}
 }
 

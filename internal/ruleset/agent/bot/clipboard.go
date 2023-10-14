@@ -1,10 +1,9 @@
 package bot
 
 import (
-	"fyne.io/fyne/v2"
 	"github.com/allegro/bigcache/v3"
 	"github.com/flowline-io/flowkit/internal/pkg/client"
-	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 )
 
@@ -13,9 +12,9 @@ const (
 	UploadAgentID         = "clipboard_upload"
 )
 
-func ClipboardUpload(window fyne.Window, cache *bigcache.BigCache, c *client.Tinode) {
+func ClipboardUpload(cache *bigcache.BigCache, c *client.Tinode) {
 	old, _ := cache.Get("clipboard")
-	now := window.Clipboard().Content()
+	now := "..." // todo
 	if string(old) == now {
 		return
 	}
@@ -27,7 +26,7 @@ func ClipboardUpload(window fyne.Window, cache *bigcache.BigCache, c *client.Tin
 		},
 	})
 	if err != nil {
-		logs.Error(err)
+		flog.Error(err)
 	}
 	_ = cache.Set("clipboard", []byte(now))
 }
