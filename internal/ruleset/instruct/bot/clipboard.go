@@ -2,7 +2,7 @@ package bot
 
 import (
 	"fyne.io/fyne/v2"
-	"github.com/flowline-io/linkit/internal/pkg/types"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
 )
 
 var clipboard = []Executor{

@@ -3,10 +3,10 @@ package agent
 import (
 	"fyne.io/fyne/v2"
 	"github.com/allegro/bigcache/v3"
-	"github.com/flowline-io/linkit/internal/pkg/client"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
-	"github.com/flowline-io/linkit/internal/pkg/util"
-	"github.com/flowline-io/linkit/internal/ruleset/agent/bot"
+	"github.com/flowline-io/flowkit/internal/pkg/client"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/util"
+	"github.com/flowline-io/flowkit/internal/ruleset/agent/bot"
 	"github.com/robfig/cron/v3"
 )
 

@@ -4,9 +4,9 @@ import (
 	"context"
 	"fyne.io/fyne/v2"
 	"github.com/allegro/bigcache/v3"
-	"github.com/flowline-io/linkit/internal/pkg/client"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
-	"github.com/flowline-io/linkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/client"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/robfig/cron/v3"
 	"time"
 )

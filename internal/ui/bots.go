@@ -6,11 +6,11 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
-	"github.com/flowline-io/linkit/internal/pkg/client"
-	"github.com/flowline-io/linkit/internal/pkg/constant"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
-	"github.com/flowline-io/linkit/internal/pkg/setting"
-	"github.com/flowline-io/linkit/internal/pkg/types"
+	"github.com/flowline-io/flowkit/internal/pkg/client"
+	"github.com/flowline-io/flowkit/internal/pkg/constant"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
 )
 
 type bots struct {

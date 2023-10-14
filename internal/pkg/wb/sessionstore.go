@@ -2,7 +2,7 @@ package wb
 
 import (
 	"container/list"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"sync"

@@ -2,8 +2,8 @@ package wb
 
 import (
 	"encoding/json"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
-	"github.com/flowline-io/linkit/internal/pkg/types"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/gorilla/websocket"
 	"sync"
 	"sync/atomic"

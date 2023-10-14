@@ -1,5 +1,5 @@
-APPID = com.github.sysatom.linkit
-NAME = linkit
+APPID = com.github.sysatom.flowkit
+NAME = flowkit
 
 # If PREFIX isn't provided, we check for $(DESTDIR)/usr/local and use that if it exists.
 # Otherwice we fall back to using /usr.

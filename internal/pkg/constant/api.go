@@ -1,6 +1,6 @@
 package constant
 
-import "github.com/flowline-io/linkit/internal/pkg/types"
+import "github.com/flowline-io/flowkit/internal/pkg/types"
 
 const (
 	Info  types.Action = "info"

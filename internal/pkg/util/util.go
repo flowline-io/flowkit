@@ -2,7 +2,7 @@ package util
 
 import (
 	"fyne.io/fyne/v2"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
 	"github.com/robfig/cron/v3"
 )
 

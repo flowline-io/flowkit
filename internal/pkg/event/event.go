@@ -1,7 +1,7 @@
 package event
 
 import (
-	"github.com/flowline-io/linkit/internal/pkg/types"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/gookit/event"
 )
 

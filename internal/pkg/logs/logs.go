@@ -2,8 +2,8 @@ package logs
 
 import (
 	"fmt"
-	"github.com/flowline-io/linkit/internal/pkg/constant"
-	"github.com/flowline-io/linkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/constant"
+	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/rs/zerolog"
 	"io"
 	"log"

@@ -4,7 +4,7 @@ import (
 	_ "embed"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/theme"
-	"github.com/flowline-io/linkit/internal/assets"
+	"github.com/flowline-io/flowkit/internal/assets"
 	"image/color"
 )
 

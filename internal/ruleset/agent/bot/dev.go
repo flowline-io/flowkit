@@ -1,9 +1,9 @@
 package bot
 
 import (
-	"github.com/flowline-io/linkit/internal/pkg/client"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
-	"github.com/flowline-io/linkit/internal/pkg/types"
+	"github.com/flowline-io/flowkit/internal/pkg/client"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"time"
 )
 

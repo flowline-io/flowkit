@@ -2,8 +2,8 @@ package util
 
 import (
 	"fmt"
-	"github.com/flowline-io/linkit/internal/pkg/constant"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/constant"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
 	"github.com/go-resty/resty/v2"
 	"time"
 )

@@ -1,4 +1,4 @@
-module github.com/flowline-io/linkit
+module github.com/flowline-io/flowkit
 
 go 1.20
 

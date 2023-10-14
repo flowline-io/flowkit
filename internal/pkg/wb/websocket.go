@@ -2,8 +2,8 @@ package wb
 
 import (
 	"fyne.io/fyne/v2"
-	"github.com/flowline-io/linkit/internal/pkg/logs"
-	"github.com/flowline-io/linkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/logs"
+	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/gorilla/websocket"
 	"net/http"
 	"net/url"
@@ -16,7 +16,7 @@ func Init(app fyne.App, window fyne.Window) {
 	u := url.URL{
 		Scheme: "ws",
 		Host:   setting.Get().ServerHost,
-		Path:   "/extra/session",
+		Path:   "/session",
 	}
 	logs.Info("connecting to %s", u.String())
 

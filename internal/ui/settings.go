@@ -7,8 +7,8 @@ import (
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
-	"github.com/flowline-io/linkit/internal/pkg/constant"
-	"github.com/flowline-io/linkit/internal/pkg/util"
+	"github.com/flowline-io/flowkit/internal/pkg/constant"
+	"github.com/flowline-io/flowkit/internal/pkg/util"
 	"strconv"
 )
 

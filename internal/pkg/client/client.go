@@ -3,10 +3,10 @@ package client
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/flowline-io/linkit/internal/pkg/constant"
-	"github.com/flowline-io/linkit/internal/pkg/setting"
-	"github.com/flowline-io/linkit/internal/pkg/types"
-	"github.com/flowline-io/linkit/internal/pkg/util"
+	"github.com/flowline-io/flowkit/internal/pkg/constant"
+	"github.com/flowline-io/flowkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
+	"github.com/flowline-io/flowkit/internal/pkg/util"
 	"github.com/go-resty/resty/v2"
 	"net/http"
 	"time"
@@ -36,7 +36,7 @@ func (v *Tinode) fetcher(action types.Action, content any) ([]byte, error) {
 			"version": 1,
 			"content": content,
 		}).
-		Post("/extra/linkit")
+		Post("/flowkit")
 	if err != nil {
 		return nil, err
 	}
