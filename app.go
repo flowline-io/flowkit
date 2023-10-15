@@ -3,7 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/flowline-io/flowkit/internal/pkg/setting"
+	"github.com/gen2brain/beeep"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+	"time"
 )
 
 // App struct
@@ -43,6 +46,40 @@ func (a *App) beforeClose(ctx context.Context) (prevent bool) {
 
 // Greet returns a greeting for the given name
 func (a *App) Greet(name string) string {
+
+	// store
+	store, err := setting.NewConfigStore()
+	if err != nil {
+		runtime.LogError(a.ctx, err.Error())
+		return ""
+	}
+
+	c, err := store.Config()
+	if err != nil {
+		runtime.LogError(a.ctx, err.Error())
+		return ""
+	}
+	runtime.LogPrintf(a.ctx, "%+v", c)
+
+	err = store.Save(setting.Config{
+		ServerHost: time.Now().String(),
+	})
+	if err != nil {
+		runtime.LogError(a.ctx, err.Error())
+		return ""
+	}
+
+	// notify
+	err = beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
+	if err != nil {
+		runtime.LogError(a.ctx, err.Error())
+		return ""
+	}
+	err = beeep.Notify("Title", "Message body", "")
+	if err != nil {
+		panic(err)
+	}
+
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
