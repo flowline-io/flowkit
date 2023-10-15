@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -17,8 +16,7 @@ import { MainNav } from "@/pages/dashboard/components/main-nav"
 import { Overview } from "@/pages/dashboard/components/overview"
 import { RecentSales } from "@/pages/dashboard/components/recent-sales"
 import { Search } from "@/pages/dashboard/components/search"
-import TeamSwitcher from "@/pages/dashboard/components/team-switcher"
-import { UserNav } from "@/pages/dashboard/components/user-nav"
+import {ModeToggle} from "@/components/mode-toggle";
 
 export default function DashboardPage() {
   return (
@@ -26,11 +24,10 @@ export default function DashboardPage() {
       <div className="hidden flex-col md:flex">
         <div className="border-b">
           <div className="flex h-16 items-center px-4">
-            <TeamSwitcher />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
-              <UserNav />
+              <ModeToggle />
             </div>
           </div>
         </div>
@@ -39,7 +36,6 @@ export default function DashboardPage() {
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
             <div className="flex items-center space-x-2">
               <CalendarDateRangePicker />
-              <Button>Download</Button>
             </div>
           </div>
           <Tabs defaultValue="overview" className="space-y-4">
