@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import logo from '../assets/images/logo-universal.png';
+import logo from '@/assets/images/logo-universal.png';
 import './App.css';
 import {Greet} from "../../wailsjs/go/main/App";
 import {Button} from "@/components/ui/button";
@@ -8,7 +8,6 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
-
 
 const formSchema = z.object({
   username: z.string().min(2, {
