@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import logo from '@/assets/images/logo-universal.png';
 import './App.css';
 import {Greet} from "../../wailsjs/go/main/App";
 import {Button} from "@/components/ui/button";
@@ -9,6 +8,8 @@ import {useForm} from "react-hook-form";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {ModeToggle} from "@/components/mode-toggle";
+import {Client} from "@/util/client";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -26,6 +27,21 @@ function Example() {
     Greet(name).then(updateResultText);
   }
 
+  // Access the client
+  const queryClient = useQueryClient()
+
+  // Queries
+  const query = useQuery({ queryKey: ['example'], queryFn: ()=> {return Client().dev.getDevExample()} })
+
+  // Mutations
+  const mutation = useMutation({
+    mutationFn: Client().okr.postOkrObjective,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['example'] })
+    },
+  })
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,11 +55,12 @@ function Example() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
+
+    Client().dev.getDevExample().then(res => console.log(res));
   }
 
   return (
     <>
-      <img src={logo} id="logo" alt="logo"/>
       <div id="result" className="result">{resultText}</div>
       <ModeToggle/>
       <div id="input" className="input-box">
@@ -72,6 +89,9 @@ function Example() {
             <Button type="submit">Submit</Button>
           </form>
         </Form>
+      </div>
+      <div>
+        title: {query.data?.data.title}
       </div>
     </>
   )
