@@ -1,8 +1,0 @@
-Website = "https://github.com/flowline-io/flowkit"
-
-[Details]
-  Icon = "internal/assets/icon/app-icon.png"
-  Name = "Flowkit"
-  ID = "com.github.sysatom.flowkit"
-  Version = "0.0.1"
-  Build = 3
