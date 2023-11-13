@@ -13,12 +13,12 @@ import (
 func Cron() {
 	c := cron.New(cron.WithSeconds())
 	// agent job
-	if setting.Get().AccessToken != "" {
+	if setting.DefaultConfig().AccessToken != "" {
 		cache, err := bigcache.New(context.Background(), bigcache.DefaultConfig(24*time.Hour))
 		if err != nil {
 			flog.Panic(err.Error())
 		}
-		job := &agentJob{cache: cache, client: client.NewTinode(setting.Get().AccessToken)}
+		job := &agentJob{cache: cache, client: client.NewTinode(setting.DefaultConfig().AccessToken)}
 		job.RunClipboard(c)
 		job.RunAnki(c)
 		job.RunDev(c)

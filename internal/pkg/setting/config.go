@@ -4,20 +4,23 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/adrg/xdg"
+	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"io/fs"
 	"os"
 	"path/filepath"
 )
 
 type Config struct {
-	ServerHost string `json:"serverHost"`
+	ServerHost     string   `json:"server_host"`
+	AccessToken    string   `json:"access_token"`
+	LogPath        string   `json:"log_path"`
+	InstructSwitch types.KV `json:"instruct_switch"`
 }
 
-func DefaultConfig() Config {
-	return Config{
-		ServerHost: "localhost:6060",
-	}
+var config Config
 
+func DefaultConfig() Config {
+	return config
 }
 
 type ConfigStore struct {
@@ -33,6 +36,11 @@ func NewConfigStore() (*ConfigStore, error) {
 	return &ConfigStore{
 		configPath: configFilePath,
 	}, nil
+}
+
+func (s *ConfigStore) Load() (err error) {
+	config, err = s.Config()
+	return
 }
 
 func (s *ConfigStore) Config() (Config, error) {
@@ -64,11 +72,23 @@ func (s *ConfigStore) Config() (Config, error) {
 	return cfg, nil
 }
 
-func (s ConfigStore) Save(cfg Config) error {
+func (s *ConfigStore) Save(cfg Config) error {
 	buf, err := json.Marshal(cfg)
 	if err != nil {
 		return fmt.Errorf("could not marshal the configuration file: %w", err)
 	}
 
 	return os.WriteFile(s.configPath, buf, 0644)
+}
+
+func Init() error {
+	cfg, err := NewConfigStore()
+	if err != nil {
+		return err
+	}
+	err = cfg.Load()
+	if err != nil {
+		return err
+	}
+	return nil
 }

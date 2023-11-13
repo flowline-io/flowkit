@@ -13,12 +13,12 @@ import (
 func Cron() {
 	c := cron.New(cron.WithSeconds())
 	// instruct job
-	if setting.Get().AccessToken != "" {
+	if setting.DefaultConfig().AccessToken != "" {
 		cache, err := bigcache.New(context.Background(), bigcache.DefaultConfig(time.Hour))
 		if err != nil {
 			flog.Panic(err.Error())
 		}
-		job := &instructJob{client: client.NewTinode(setting.Get().AccessToken), cache: cache}
+		job := &instructJob{client: client.NewTinode(setting.DefaultConfig().AccessToken), cache: cache}
 		_, err = c.AddJob("*/10 * * * * *", job)
 		if err != nil {
 			flog.Panic(err.Error())

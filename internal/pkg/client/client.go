@@ -21,7 +21,7 @@ func NewTinode(accessToken string) *Tinode {
 	v := &Tinode{accessToken: accessToken}
 
 	v.c = resty.New()
-	v.c.SetBaseURL(util.FillScheme(setting.Get().ServerHost))
+	v.c.SetBaseURL(util.FillScheme(setting.DefaultConfig().ServerHost))
 	v.c.SetTimeout(time.Minute)
 
 	return v

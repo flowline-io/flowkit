@@ -14,13 +14,13 @@ var sessionStore = NewSessionStore(idleSessionTimeout + 15*time.Second)
 func Init() {
 	u := url.URL{
 		Scheme: "ws",
-		Host:   setting.Get().ServerHost,
+		Host:   setting.DefaultConfig().ServerHost,
 		Path:   "/session",
 	}
 	flog.Info("connecting to %s", u.String())
 
 	header := http.Header{}
-	header.Set("X-AccessToken", setting.Get().AccessToken)
+	header.Set("X-AccessToken", setting.DefaultConfig().AccessToken)
 
 	conn, _, err := websocket.DefaultDialer.Dial(u.String(), header)
 	if err != nil {

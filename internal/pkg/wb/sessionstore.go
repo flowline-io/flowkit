@@ -168,7 +168,7 @@ func (ss *SessionStore) Shutdown() {
 		s.stopSession(data)
 	}
 
-	flog.Info("SessionStore shut down, sessions terminated: %s", len(ss.sessCache))
+	flog.Info("SessionStore shut down, sessions terminated: %d", len(ss.sessCache))
 }
 
 // NewSessionStore initializes a session store.

@@ -21,7 +21,10 @@ var assets embed.FS
 func main() {
 
 	// load preferences
-	setting.LoadPreferences("Preferences()")
+	err := setting.Init()
+	if err != nil {
+		flog.Panic(err.Error())
+	}
 
 	// logger
 	flog.Init()
@@ -43,7 +46,7 @@ func main() {
 	app := NewApp()
 
 	// Create application with options
-	err := wails.Run(&options.App{
+	err = wails.Run(&options.App{
 		Title:     "flowkit",
 		Width:     1024,
 		Height:    768,
