@@ -3,7 +3,7 @@ module github.com/flowline-io/flowkit
 go 1.20
 
 require (
-	fyne.io/fyne/v2 v2.4.1
+	fyne.io/fyne/v2 v2.4.2
 	github.com/adrg/xdg v0.4.0
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/gen2brain/beeep v0.0.0-20230907135156-1a38885a97fc
