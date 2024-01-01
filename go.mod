@@ -7,7 +7,7 @@ require (
 	github.com/adrg/xdg v0.4.0
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/gen2brain/beeep v0.0.0-20230907135156-1a38885a97fc
-	github.com/go-resty/resty/v2 v2.10.0
+	github.com/go-resty/resty/v2 v2.11.0
 	github.com/gofiber/fiber/v2 v2.51.0
 	github.com/google/uuid v1.5.0
 	github.com/gookit/event v1.1.1
