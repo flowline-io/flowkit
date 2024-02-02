@@ -1,13 +1,12 @@
 package bot
 
 import (
-	"fyne.io/fyne/v2"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 )
 
 type Executor struct {
 	Flag string
-	Run  func(app fyne.App, window fyne.Window, data types.KV) error
+	Run  func(app any, window any, data types.KV) error
 }
 
 var DoInstruct = map[string][]Executor{

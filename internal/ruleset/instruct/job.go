@@ -2,19 +2,19 @@ package instruct
 
 import (
 	"fmt"
-	"fyne.io/fyne/v2"
+	"time"
+
 	"github.com/allegro/bigcache/v3"
 	"github.com/flowline-io/flowkit/internal/pkg/client"
 	"github.com/flowline-io/flowkit/internal/pkg/flog"
 	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct/bot"
-	"time"
 )
 
 type instructJob struct {
-	app    fyne.App
-	window fyne.Window
+	app    any
+	window any
 	cache  *bigcache.BigCache
 	client *client.Tinode
 }
@@ -57,7 +57,7 @@ func (j *instructJob) Run() {
 	}
 }
 
-func RunInstruct(app fyne.App, window fyne.Window, cache *bigcache.BigCache, item client.Instruct) error {
+func RunInstruct(app any, window any, cache *bigcache.BigCache, item client.Instruct) error {
 	for id, dos := range bot.DoInstruct {
 		if item.Bot != id {
 			continue
