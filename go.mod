@@ -11,7 +11,7 @@ require (
 	github.com/go-resty/resty/v2 v2.11.0
 	github.com/gofiber/fiber/v2 v2.52.0
 	github.com/google/uuid v1.6.0
-	github.com/gookit/event v1.1.1
+	github.com/gookit/event v1.1.2
 	github.com/gorilla/websocket v1.5.1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/rs/zerolog v1.32.0
@@ -52,5 +52,5 @@ require (
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1 // indirect
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/sys v0.15.0 // indirect
-	golang.org/x/text v0.13.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
 )
