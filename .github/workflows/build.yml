@@ -21,8 +21,11 @@ jobs:
         with:
           go-version: '^1.21'
 
-      - name: Build
+      - name: Install wails
         run: |
           go install github.com/wailsapp/wails/v2/cmd/wails@latest
+
+      - name: Build
+        run: |
           wails doctor
           wails build
