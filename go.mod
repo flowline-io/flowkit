@@ -14,7 +14,7 @@ require (
 	github.com/gookit/event v1.1.2
 	github.com/gorilla/websocket v1.5.1
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/rs/zerolog v1.32.0
+	github.com/rs/zerolog v1.33.0
 	github.com/wailsapp/wails/v2 v2.8.2
 )
 
