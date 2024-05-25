@@ -29,7 +29,7 @@ func NewFlowbot(accessToken string) *Flowbot {
 
 func (v *Flowbot) fetcher(action types.Action, content any) ([]byte, error) {
 	resp, err := v.c.R().
-		SetHeader("Authorization", fmt.Sprintf("Bearer %s", v.accessToken)).
+		SetAuthToken(v.accessToken).
 		SetResult(&types.ServerComMessage{}).
 		SetBody(map[string]any{
 			"action":  action,
