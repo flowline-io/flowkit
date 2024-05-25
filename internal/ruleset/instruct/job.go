@@ -16,7 +16,7 @@ type instructJob struct {
 	app    any
 	window any
 	cache  *bigcache.BigCache
-	client *client.Tinode
+	client *client.Flowbot
 }
 
 func (j *instructJob) Run() {

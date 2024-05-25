@@ -12,7 +12,7 @@ const (
 	UploadAgentID         = "clipboard_upload"
 )
 
-func ClipboardUpload(cache *bigcache.BigCache, c *client.Tinode) {
+func ClipboardUpload(cache *bigcache.BigCache, c *client.Flowbot) {
 	old, _ := cache.Get("clipboard")
 	now := "..." // todo
 	if string(old) == now {

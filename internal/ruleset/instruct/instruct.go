@@ -18,7 +18,7 @@ func Cron() {
 		if err != nil {
 			flog.Panic(err.Error())
 		}
-		job := &instructJob{client: client.NewTinode(setting.DefaultConfig().AccessToken), cache: cache}
+		job := &instructJob{client: client.NewFlowbot(setting.DefaultConfig().AccessToken), cache: cache}
 		_, err = c.AddJob("*/10 * * * * *", job)
 		if err != nil {
 			flog.Panic(err.Error())

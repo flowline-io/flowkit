@@ -11,7 +11,7 @@ import (
 
 type agentJob struct {
 	cache  *bigcache.BigCache
-	client *client.Tinode
+	client *client.Flowbot
 }
 
 func (j *agentJob) RunAnki(c *cron.Cron) {

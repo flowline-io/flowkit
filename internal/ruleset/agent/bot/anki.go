@@ -19,7 +19,7 @@ const (
 	ReviewAgentID = "review_agent"
 )
 
-func AnkiStats(c *client.Tinode) {
+func AnkiStats(c *client.Flowbot) {
 	html, err := getCollectionStatsHTML()
 	if err != nil {
 		flog.Error(err)
@@ -37,7 +37,7 @@ func AnkiStats(c *client.Tinode) {
 	}
 }
 
-func AnkiReview(c *client.Tinode) {
+func AnkiReview(c *client.Flowbot) {
 	num, err := getNumCardsReviewedToday()
 	if err != nil {
 		flog.Error(err)

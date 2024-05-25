@@ -12,7 +12,7 @@ const (
 	ImportAgentId   = "import_agent"
 )
 
-func DevImport(c *client.Tinode) {
+func DevImport(c *client.Flowbot) {
 	_, err := c.Agent(types.AgentContent{
 		Id:      ImportAgentId,
 		Version: DevAgentVersion,

@@ -18,7 +18,7 @@ func Cron() {
 		if err != nil {
 			flog.Panic(err.Error())
 		}
-		job := &agentJob{cache: cache, client: client.NewTinode(setting.DefaultConfig().AccessToken)}
+		job := &agentJob{cache: cache, client: client.NewFlowbot(setting.DefaultConfig().AccessToken)}
 		job.RunClipboard(c)
 		job.RunAnki(c)
 		job.RunDev(c)

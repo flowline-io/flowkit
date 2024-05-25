@@ -12,13 +12,13 @@ import (
 	"time"
 )
 
-type Tinode struct {
+type Flowbot struct {
 	c           *resty.Client
 	accessToken string
 }
 
-func NewTinode(accessToken string) *Tinode {
-	v := &Tinode{accessToken: accessToken}
+func NewFlowbot(accessToken string) *Flowbot {
+	v := &Flowbot{accessToken: accessToken}
 
 	v.c = resty.New()
 	v.c.SetBaseURL(util.FillScheme(setting.DefaultConfig().ServerHost))
@@ -27,7 +27,7 @@ func NewTinode(accessToken string) *Tinode {
 	return v
 }
 
-func (v *Tinode) fetcher(action types.Action, content any) ([]byte, error) {
+func (v *Flowbot) fetcher(action types.Action, content any) ([]byte, error) {
 	resp, err := v.c.R().
 		SetHeader("Authorization", fmt.Sprintf("Bearer %s", v.accessToken)).
 		SetResult(&types.ServerComMessage{}).
@@ -52,7 +52,7 @@ func (v *Tinode) fetcher(action types.Action, content any) ([]byte, error) {
 	}
 }
 
-func (v *Tinode) Bots() (*BotsResult, error) {
+func (v *Flowbot) Bots() (*BotsResult, error) {
 	data, err := v.fetcher(constant.Bots, nil)
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ type BotsResult struct {
 	} `json:"bots"`
 }
 
-func (v *Tinode) Help() (*HelpResult, error) {
+func (v *Flowbot) Help() (*HelpResult, error) {
 	data, err := v.fetcher(constant.Help, nil)
 	if err != nil {
 		return nil, err
@@ -92,7 +92,7 @@ type HelpResult struct {
 	} `json:"bots"`
 }
 
-func (v *Tinode) Pull() (*InstructResult, error) {
+func (v *Flowbot) Pull() (*InstructResult, error) {
 	data, err := v.fetcher(constant.Pull, nil)
 	if err != nil {
 		return nil, err
@@ -117,7 +117,7 @@ type Instruct struct {
 	ExpireAt string `json:"expire_at"`
 }
 
-func (v *Tinode) Agent(content types.AgentContent) (string, error) {
+func (v *Flowbot) Agent(content types.AgentContent) (string, error) {
 	data, err := v.fetcher(constant.Agent, content)
 	if err != nil {
 		return "", err
