@@ -7,7 +7,6 @@ import (
 	"github.com/flowline-io/flowkit/internal/pkg/server"
 	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/flowline-io/flowkit/internal/pkg/util"
-	"github.com/flowline-io/flowkit/internal/pkg/wb"
 	"github.com/flowline-io/flowkit/internal/ruleset/agent"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct"
 	"github.com/wailsapp/wails/v2"
@@ -34,9 +33,6 @@ func main() {
 
 	// embed server
 	server.EmbedServer(constant.EmbedServerPort)
-
-	// websocket
-	wb.Init() // todo app.context
 
 	// cron
 	instruct.Cron()

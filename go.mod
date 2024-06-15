@@ -10,9 +10,7 @@ require (
 	github.com/gen2brain/beeep v0.0.0-20230907135156-1a38885a97fc
 	github.com/go-resty/resty/v2 v2.13.1
 	github.com/gofiber/fiber/v2 v2.52.4
-	github.com/google/uuid v1.6.0
 	github.com/gookit/event v1.1.2
-	github.com/gorilla/websocket v1.5.1
 	github.com/json-iterator/go v1.1.12
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/rs/zerolog v1.33.0
@@ -25,6 +23,7 @@ require (
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/jchv/go-winloader v0.0.0-20210711035445-715c2860da7e // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
 	github.com/labstack/echo/v4 v4.10.2 // indirect
