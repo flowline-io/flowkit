@@ -23,5 +23,6 @@ jobs:
 
       - name: Build
         run: |
+          sudo apt-get install gcc libgl1-mesa-dev xorg-dev
           go mod download
           go build .
