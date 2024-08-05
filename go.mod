@@ -9,7 +9,7 @@ require (
 	github.com/adrg/xdg v0.5.0
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/gen2brain/beeep v0.0.0-20230907135156-1a38885a97fc
-	github.com/go-resty/resty/v2 v2.13.1
+	github.com/go-resty/resty/v2 v2.14.0
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/gookit/event v1.1.2
 	github.com/json-iterator/go v1.1.12
@@ -59,7 +59,7 @@ require (
 	github.com/yuin/goldmark v1.7.1 // indirect
 	golang.org/x/image v0.18.0 // indirect
 	golang.org/x/mobile v0.0.0-20231127183840-76ac6878050a // indirect
-	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/net v0.27.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
