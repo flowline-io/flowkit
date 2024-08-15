@@ -28,6 +28,4 @@ dist-ssr
 flowkit.exe
 flowkit
 
-build/bin
-frontend/node_modules
-frontend/dist
+fyne_metadata_init.go
