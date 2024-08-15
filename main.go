@@ -5,6 +5,7 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/driver/desktop"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
@@ -14,21 +15,21 @@ import (
 	"github.com/flowline-io/flowkit/internal/pkg/util"
 	"github.com/flowline-io/flowkit/internal/ruleset/agent"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct"
+	"github.com/flowline-io/flowkit/internal/ui/dashboard"
 	"github.com/flowline-io/flowkit/internal/ui/info"
 )
 
 type appInfo struct {
 	name string
 	icon fyne.Resource
-	canv bool
 	run  func(fyne.Window) fyne.CanvasObject
 }
 
 var apps = []appInfo{
-	{"Dashboard", theme.DocumentIcon(), false, info.Show},
-	{"Bots", theme.AccountIcon(), false, info.Show},
-	{"Settings", theme.SettingsIcon(), false, info.Show},
-	{"Info", theme.InfoIcon(), false, info.Show},
+	{"Dashboard", theme.DocumentIcon(), dashboard.Show},
+	{"Bots", theme.AccountIcon(), info.Show},
+	{"Settings", theme.SettingsIcon(), info.Show},
+	{"Info", theme.InfoIcon(), info.Show},
 }
 
 func main() {
@@ -56,7 +57,7 @@ func main() {
 	a.SetIcon(resourceIconPng)
 
 	content := container.NewStack()
-	w := a.NewWindow(constant.AppTitle)
+	w := a.NewWindow(constant.AppName)
 
 	appList := widget.NewList(
 		func() int {
@@ -84,5 +85,18 @@ func main() {
 	split.Offset = 0.1
 	w.SetContent(split)
 	w.Resize(fyne.NewSize(640, 720))
+	w.SetCloseIntercept(func() {
+		w.Hide()
+	})
+
+	// set system tray
+	if desk, ok := a.(desktop.App); ok {
+		m := fyne.NewMenu(constant.AppName,
+			fyne.NewMenuItem("Show", func() { w.Show() }),
+			fyne.NewMenuItem("Quit", func() { a.Quit() }),
+		)
+		desk.SetSystemTrayMenu(m)
+	}
+
 	w.ShowAndRun()
 }
