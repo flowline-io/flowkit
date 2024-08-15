@@ -56,7 +56,7 @@ func main() {
 	a.SetIcon(resourceIconPng)
 
 	content := container.NewStack()
-	w := a.NewWindow("flowkit")
+	w := a.NewWindow(constant.AppTitle)
 
 	appList := widget.NewList(
 		func() int {
@@ -67,8 +67,7 @@ func main() {
 			label := widget.NewLabel("Text Editor")
 			labelHeight := label.MinSize().Height
 			icon.SetMinSize(fyne.NewSize(labelHeight, labelHeight))
-			return container.NewBorder(nil, nil, icon, nil,
-				label)
+			return container.NewBorder(nil, nil, icon, nil, label)
 		},
 		func(id widget.ListItemID, obj fyne.CanvasObject) {
 			img := obj.(*fyne.Container).Objects[1].(*canvas.Image)
