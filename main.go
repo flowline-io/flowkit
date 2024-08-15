@@ -55,7 +55,7 @@ func main() {
 	a := app.New()
 	a.SetIcon(resourceIconPng)
 
-	content := container.NewMax()
+	content := container.NewStack()
 	w := a.NewWindow("flowkit")
 
 	appList := widget.NewList(

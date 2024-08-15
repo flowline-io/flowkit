@@ -1,4 +1,4 @@
 package constant
 
-const AppId = "com.github.sysatom.linkit"
-const AppTitle = "Linkit"
+const AppId = "com.github.sysatom.flowkit"
+const AppTitle = "flowkit"
