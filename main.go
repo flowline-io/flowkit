@@ -6,6 +6,7 @@ import (
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/driver/desktop"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
@@ -48,7 +49,7 @@ func main() {
 	a.SetIcon(resourceIconPng)
 
 	// main ui
-	content := container.NewStack()
+	content := container.New(layout.NewCustomPaddedLayout(20, 20, 20, 20))
 	w := a.NewWindow(constant.AppName)
 	appList := widget.NewList(
 		func() int {
@@ -71,6 +72,7 @@ func main() {
 	appList.OnSelected = func(id widget.ListItemID) {
 		content.Objects = []fyne.CanvasObject{apps[id].run(a, w)}
 	}
+	appList.Select(0)
 	split := container.NewHSplit(appList, content)
 	split.Offset = 0.1
 	w.SetContent(split)
