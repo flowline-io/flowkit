@@ -1,9 +1,9 @@
 package types
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
+	jsoniter "github.com/json-iterator/go"
 	"reflect"
 )
 
@@ -12,7 +12,7 @@ type KV map[string]any
 func (j *KV) Scan(value any) error {
 	if bytes, ok := value.([]byte); ok {
 		result := make(map[string]any)
-		err := json.Unmarshal(bytes, &result)
+		err := jsoniter.Unmarshal(bytes, &result)
 		if err != nil {
 			return err
 		}

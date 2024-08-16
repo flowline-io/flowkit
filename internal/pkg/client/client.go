@@ -1,12 +1,12 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
 	"github.com/flowline-io/flowkit/internal/pkg/preferences"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/go-resty/resty/v2"
+	jsoniter "github.com/json-iterator/go"
 	"net/http"
 	"time"
 )
@@ -42,7 +42,7 @@ func (v *Flowbot) fetcher(action types.Action, content any) ([]byte, error) {
 
 	if resp.StatusCode() == http.StatusOK {
 		r := resp.Result().(*types.Response)
-		return json.Marshal(r.Data)
+		return jsoniter.Marshal(r.Data)
 	} else {
 		return nil, fmt.Errorf("%d", resp.StatusCode())
 	}
@@ -54,7 +54,7 @@ func (v *Flowbot) Bots() (*BotsResult, error) {
 		return nil, err
 	}
 	var r BotsResult
-	err = json.Unmarshal(data, &r.Bots)
+	err = jsoniter.Unmarshal(data, &r.Bots)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (v *Flowbot) Help() (*HelpResult, error) {
 		return nil, err
 	}
 	var r HelpResult
-	err = json.Unmarshal(data, &r.Bots)
+	err = jsoniter.Unmarshal(data, &r.Bots)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func (v *Flowbot) Pull() (*InstructResult, error) {
 		return nil, err
 	}
 	var r InstructResult
-	err = json.Unmarshal(data, &r.Instruct)
+	err = jsoniter.Unmarshal(data, &r.Instruct)
 	if err != nil {
 		return nil, err
 	}

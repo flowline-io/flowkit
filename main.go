@@ -15,6 +15,7 @@ import (
 	"github.com/flowline-io/flowkit/internal/pkg/util"
 	"github.com/flowline-io/flowkit/internal/ruleset/agent"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct"
+	"github.com/flowline-io/flowkit/internal/ui/bots"
 	"github.com/flowline-io/flowkit/internal/ui/dashboard"
 	"github.com/flowline-io/flowkit/internal/ui/info"
 	"github.com/flowline-io/flowkit/internal/ui/settings"
@@ -28,7 +29,7 @@ type appInfo struct {
 
 var apps = []appInfo{
 	{"Dashboard", theme.BrokenImageIcon(), dashboard.Show},
-	{"Bots", theme.AccountIcon(), info.Show},
+	{"Bots", theme.AccountIcon(), bots.Show},
 	{"Settings", theme.SettingsIcon(), settings.Show},
 	{"Info", theme.InfoIcon(), info.Show},
 }

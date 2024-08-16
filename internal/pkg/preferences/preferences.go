@@ -1,10 +1,10 @@
 package preferences
 
 import (
-	"encoding/json"
 	"fyne.io/fyne/v2"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
+	jsoniter "github.com/json-iterator/go"
 )
 
 type Config struct {
@@ -29,7 +29,7 @@ func Load(app fyne.App) error {
 	if data == "" {
 		config.InstructSwitch = make(types.KV)
 	} else {
-		err := json.Unmarshal([]byte(data), &config.InstructSwitch)
+		err := jsoniter.Unmarshal([]byte(data), &config.InstructSwitch)
 		if err != nil {
 			return err
 		}
