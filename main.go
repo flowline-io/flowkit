@@ -74,9 +74,10 @@ func main() {
 	}
 	appList.Select(0)
 	split := container.NewHSplit(appList, content)
-	split.Offset = 0.1
+	split.Offset = 0.2
+	w.CenterOnScreen()
 	w.SetContent(split)
-	w.Resize(fyne.NewSize(640, 720))
+	w.Resize(fyne.NewSize(1080, 720))
 	w.SetCloseIntercept(func() {
 		w.Hide()
 	})

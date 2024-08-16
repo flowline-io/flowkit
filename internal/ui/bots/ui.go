@@ -17,20 +17,11 @@ func Show(app fyne.App, win fyne.Window) fyne.CanvasObject {
 }
 
 func botsBox(app fyne.App) []fyne.CanvasObject {
-	//c := client.NewFlowbot(preferences.AppConfig().AccessToken)
-	//result, err := c.Bots()
-	//if err != nil {
-	//	flog.Error(err)
-	//	return nil
-	//}
-
-	result := client.BotsResult{
-		Bots: []struct {
-			Id   string `json:"id"`
-			Name string `json:"name"`
-		}{{"A1", "A1"}, {"A2", "A2"},
-			{"A3", "A3"}, {"A4", "A4"},
-			{"A5", "A5"}, {"A6", "A6"}},
+	c := client.NewFlowbot(preferences.AppConfig().AccessToken)
+	result, err := c.Bots()
+	if err != nil {
+		flog.Error(err)
+		return nil
 	}
 
 	list := make([]fyne.CanvasObject, 0, len(result.Bots))
