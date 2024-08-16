@@ -3,7 +3,7 @@ package flog
 import (
 	"fmt"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
-	"github.com/flowline-io/flowkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/preferences"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
@@ -25,7 +25,7 @@ func Init() {
 	var writer []io.Writer
 	// log file
 	logFileName := fmt.Sprintf("%s.log", constant.AppId)
-	logPath := setting.AppConfig().LogPath
+	logPath := preferences.AppConfig().LogPath
 	if _, err := os.Stat(logPath); !os.IsNotExist(err) {
 		logFilePath := fmt.Sprintf("%s/%s", logPath, logFileName)
 		var logFile *os.File

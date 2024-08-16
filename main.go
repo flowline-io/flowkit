@@ -10,8 +10,8 @@ import (
 	"fyne.io/fyne/v2/widget"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
 	"github.com/flowline-io/flowkit/internal/pkg/flog"
+	"github.com/flowline-io/flowkit/internal/pkg/preferences"
 	"github.com/flowline-io/flowkit/internal/pkg/server"
-	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/flowline-io/flowkit/internal/pkg/util"
 	"github.com/flowline-io/flowkit/internal/ruleset/agent"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct"
@@ -91,7 +91,7 @@ func main() {
 		flog.Info("app %s started", a.Metadata().Name)
 
 		// load
-		err := setting.Load(a)
+		err := preferences.Load(a)
 		if err != nil {
 			flog.Panic(err.Error())
 		}

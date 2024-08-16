@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flowline-io/flowkit/internal/pkg/constant"
-	"github.com/flowline-io/flowkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/preferences"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/flowline-io/flowkit/internal/pkg/util"
 	"github.com/go-resty/resty/v2"
@@ -21,7 +21,7 @@ func NewFlowbot(accessToken string) *Flowbot {
 	v := &Flowbot{accessToken: accessToken}
 
 	v.c = resty.New()
-	v.c.SetBaseURL(util.FillScheme(setting.AppConfig().ServerHost))
+	v.c.SetBaseURL(util.FillScheme(preferences.AppConfig().ServerHost))
 	v.c.SetTimeout(time.Minute)
 
 	return v

@@ -2,12 +2,12 @@ package instruct
 
 import (
 	"fmt"
+	"github.com/flowline-io/flowkit/internal/pkg/preferences"
 	"time"
 
 	"github.com/allegro/bigcache/v3"
 	"github.com/flowline-io/flowkit/internal/pkg/client"
 	"github.com/flowline-io/flowkit/internal/pkg/flog"
-	"github.com/flowline-io/flowkit/internal/pkg/setting"
 	"github.com/flowline-io/flowkit/internal/pkg/types"
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct/bot"
 )
@@ -29,7 +29,7 @@ func (j *instructJob) Run() {
 		return
 	}
 	// get preference
-	switcher := setting.AppConfig().InstructSwitch
+	switcher := preferences.AppConfig().InstructSwitch
 	// instruct loop
 	for _, item := range res.Instruct {
 		// check switch

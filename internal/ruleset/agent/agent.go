@@ -5,13 +5,13 @@ import (
 	"github.com/allegro/bigcache/v3"
 	"github.com/flowline-io/flowkit/internal/pkg/client"
 	"github.com/flowline-io/flowkit/internal/pkg/flog"
-	"github.com/flowline-io/flowkit/internal/pkg/setting"
+	"github.com/flowline-io/flowkit/internal/pkg/preferences"
 	"github.com/robfig/cron/v3"
 	"time"
 )
 
 func Cron() {
-	if setting.AppConfig().AccessToken == "" {
+	if preferences.AppConfig().AccessToken == "" {
 		return
 	}
 	// agent job
@@ -20,7 +20,7 @@ func Cron() {
 	if err != nil {
 		flog.Panic(err.Error())
 	}
-	job := &agentJob{cache: cache, client: client.NewFlowbot(setting.AppConfig().AccessToken)}
+	job := &agentJob{cache: cache, client: client.NewFlowbot(preferences.AppConfig().AccessToken)}
 	job.RunClipboard(c)
 	job.RunAnki(c)
 	job.RunDev(c)
