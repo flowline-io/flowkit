@@ -16,7 +16,7 @@ func Show(app fyne.App, win fyne.Window) fyne.CanvasObject {
 	app.Preferences().SetBool(constant.InstructPreferenceKey, true)
 	fmt.Printf("App: %+v\n", app.Metadata())
 
-	app.SendNotification(&fyne.Notification{Title: "Hello", Content: "This is a notification"})
+	// app.SendNotification(&fyne.Notification{Title: "Hello", Content: "This is a notification"})
 
 	str := binding.NewString()
 	go func() {

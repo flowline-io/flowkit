@@ -2,8 +2,8 @@ package constant
 
 const (
 	ServerPreferenceKey   = "ServerHost"
-	LogPreferenceKey      = "LogPath"
 	TokenPreferenceKey    = "AccessToken"
+	LogPreferenceKey      = "LogPath"
 	IntervalPreferenceKey = "RequestInterval"
 	InstructPreferenceKey = "InstructSwitch"
 )

@@ -2,6 +2,8 @@ package constant
 
 import "github.com/flowline-io/flowkit/internal/pkg/types"
 
+const ApiVersion = 1
+
 const (
 	Info  types.Action = "info"
 	Pull  types.Action = "pull"

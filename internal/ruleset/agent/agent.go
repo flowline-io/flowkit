@@ -21,7 +21,6 @@ func Cron() {
 		flog.Panic(err.Error())
 	}
 	job := &agentJob{cache: cache, client: client.NewFlowbot(preferences.AppConfig().AccessToken)}
-	job.RunClipboard(c)
 	job.RunAnki(c)
 	job.RunDev(c)
 	c.Start()

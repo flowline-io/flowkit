@@ -25,13 +25,6 @@ func (j *agentJob) RunAnki(c *cron.Cron) {
 	})
 }
 
-func (j *agentJob) RunClipboard(c *cron.Cron) {
-	util.MustAddFunc(c, "*/10 * * * * *", func() {
-		flog.Info("[agent] clipboard upload")
-		bot.ClipboardUpload(j.cache, j.client)
-	})
-}
-
 func (j *agentJob) RunDev(c *cron.Cron) {
 	util.MustAddFunc(c, "0 * * * * *", func() {
 		flog.Info("[agent] dev import")

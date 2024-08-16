@@ -17,6 +17,7 @@ import (
 	"github.com/flowline-io/flowkit/internal/ruleset/instruct"
 	"github.com/flowline-io/flowkit/internal/ui/dashboard"
 	"github.com/flowline-io/flowkit/internal/ui/info"
+	"github.com/flowline-io/flowkit/internal/ui/settings"
 )
 
 type appInfo struct {
@@ -26,9 +27,9 @@ type appInfo struct {
 }
 
 var apps = []appInfo{
-	{"Dashboard", theme.DocumentIcon(), dashboard.Show},
+	{"Dashboard", theme.BrokenImageIcon(), dashboard.Show},
 	{"Bots", theme.AccountIcon(), info.Show},
-	{"Settings", theme.SettingsIcon(), info.Show},
+	{"Settings", theme.SettingsIcon(), settings.Show},
 	{"Info", theme.InfoIcon(), info.Show},
 }
 
@@ -42,7 +43,7 @@ func main() {
 	// embed server
 	server.EmbedServer(constant.EmbedServerPort)
 
-	a := app.New()
+	a := app.NewWithID(constant.AppId)
 	a.SetIcon(resourceIconPng)
 
 	// main ui
@@ -88,7 +89,7 @@ func main() {
 
 	// lifecycle hook
 	a.Lifecycle().SetOnStarted(func() {
-		flog.Info("app %s started", a.Metadata().Name)
+		flog.Info("app started")
 
 		// load
 		err := preferences.Load(a)
