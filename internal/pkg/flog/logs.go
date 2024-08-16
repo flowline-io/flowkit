@@ -25,7 +25,7 @@ func Init() {
 	var writer []io.Writer
 	// log file
 	logFileName := fmt.Sprintf("%s.log", constant.AppId)
-	logPath := setting.DefaultConfig().LogPath
+	logPath := setting.AppConfig().LogPath
 	if _, err := os.Stat(logPath); !os.IsNotExist(err) {
 		logFilePath := fmt.Sprintf("%s/%s", logPath, logFileName)
 		var logFile *os.File

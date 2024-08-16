@@ -29,7 +29,7 @@ func (j *instructJob) Run() {
 		return
 	}
 	// get preference
-	switcher := setting.DefaultConfig().InstructSwitch
+	switcher := setting.AppConfig().InstructSwitch
 	// instruct loop
 	for _, item := range res.Instruct {
 		// check switch

@@ -103,14 +103,24 @@ type Data struct {
 	Content KV     `json:"content"`
 }
 
-// ClientComMessage is a wrapper for client messages.
-type ClientComMessage struct {
-	Data Data `json:"data"`
+type Response struct {
+	// Execution status (success or failure), must be one of ok and failed,
+	// indicating successful and unsuccessful execution, respectively.
+	Status ResponseStatus `json:"status"`
+	// The return code, which must conform to the return code rules defined later on this page
+	RetCode int64 `json:"retcode,omitempty"`
+	// Response data
+	Data any `json:"data,omitempty"`
+	// Error message, it is recommended to fill in a human-readable error message when the action fails to execute,
+	// or an empty string when it succeeds.
+	Message string `json:"message,omitempty"`
 }
 
-// ServerComMessage is a wrapper for server-side messages.
-type ServerComMessage struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
-	Data    any    `json:"data"`
-}
+type ResponseStatus string
+
+const (
+	Success ResponseStatus = "ok"
+	Failed  ResponseStatus = "failed"
+
+	SuccessCode = int64(0)
+)

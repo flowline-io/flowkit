@@ -21,7 +21,7 @@ func NewFlowbot(accessToken string) *Flowbot {
 	v := &Flowbot{accessToken: accessToken}
 
 	v.c = resty.New()
-	v.c.SetBaseURL(util.FillScheme(setting.DefaultConfig().ServerHost))
+	v.c.SetBaseURL(util.FillScheme(setting.AppConfig().ServerHost))
 	v.c.SetTimeout(time.Minute)
 
 	return v
@@ -30,7 +30,7 @@ func NewFlowbot(accessToken string) *Flowbot {
 func (v *Flowbot) fetcher(action types.Action, content any) ([]byte, error) {
 	resp, err := v.c.R().
 		SetAuthToken(v.accessToken).
-		SetResult(&types.ServerComMessage{}).
+		SetResult(&types.Response{}).
 		SetBody(map[string]any{
 			"action":  action,
 			"version": 1,
@@ -42,7 +42,7 @@ func (v *Flowbot) fetcher(action types.Action, content any) ([]byte, error) {
 	}
 
 	if resp.StatusCode() == http.StatusOK {
-		r := resp.Result().(*types.ServerComMessage)
+		r := resp.Result().(*types.Response)
 		return json.Marshal(r.Data)
 	} else {
 		return nil, fmt.Errorf("%d, %s (%s)",

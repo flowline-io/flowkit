@@ -22,7 +22,7 @@ import (
 type appInfo struct {
 	name string
 	icon fyne.Resource
-	run  func(fyne.Window) fyne.CanvasObject
+	run  func(fyne.App, fyne.Window) fyne.CanvasObject
 }
 
 var apps = []appInfo{
@@ -33,13 +33,6 @@ var apps = []appInfo{
 }
 
 func main() {
-
-	// load preferences
-	err := setting.Init()
-	if err != nil {
-		flog.Panic(err.Error())
-	}
-
 	// logger
 	flog.Init()
 
@@ -49,16 +42,12 @@ func main() {
 	// embed server
 	server.EmbedServer(constant.EmbedServerPort)
 
-	// cron
-	instruct.Cron()
-	agent.Cron()
-
 	a := app.New()
 	a.SetIcon(resourceIconPng)
 
+	// main ui
 	content := container.NewStack()
 	w := a.NewWindow(constant.AppName)
-
 	appList := widget.NewList(
 		func() int {
 			return len(apps)
@@ -78,9 +67,8 @@ func main() {
 			text.SetText(apps[id].name)
 		})
 	appList.OnSelected = func(id widget.ListItemID) {
-		content.Objects = []fyne.CanvasObject{apps[id].run(w)}
+		content.Objects = []fyne.CanvasObject{apps[id].run(a, w)}
 	}
-
 	split := container.NewHSplit(appList, content)
 	split.Offset = 0.1
 	w.SetContent(split)
@@ -89,7 +77,7 @@ func main() {
 		w.Hide()
 	})
 
-	// set system tray
+	// system tray
 	if desk, ok := a.(desktop.App); ok {
 		m := fyne.NewMenu(constant.AppName,
 			fyne.NewMenuItem("Show", func() { w.Show() }),
@@ -97,6 +85,21 @@ func main() {
 		)
 		desk.SetSystemTrayMenu(m)
 	}
+
+	// lifecycle hook
+	a.Lifecycle().SetOnStarted(func() {
+		flog.Info("app %s started", a.Metadata().Name)
+
+		// load
+		err := setting.Load(a)
+		if err != nil {
+			flog.Panic(err.Error())
+		}
+
+		// cron
+		instruct.Cron()
+		agent.Cron()
+	})
 
 	w.ShowAndRun()
 }

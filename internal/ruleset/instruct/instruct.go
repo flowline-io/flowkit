@@ -11,18 +11,19 @@ import (
 )
 
 func Cron() {
-	c := cron.New(cron.WithSeconds())
+	if setting.AppConfig().AccessToken == "" {
+		return
+	}
 	// instruct job
-	if setting.DefaultConfig().AccessToken != "" {
-		cache, err := bigcache.New(context.Background(), bigcache.DefaultConfig(time.Hour))
-		if err != nil {
-			flog.Panic(err.Error())
-		}
-		job := &instructJob{client: client.NewFlowbot(setting.DefaultConfig().AccessToken), cache: cache}
-		_, err = c.AddJob("*/10 * * * * *", job)
-		if err != nil {
-			flog.Panic(err.Error())
-		}
+	c := cron.New(cron.WithSeconds())
+	cache, err := bigcache.New(context.Background(), bigcache.DefaultConfig(time.Hour))
+	if err != nil {
+		flog.Panic(err.Error())
+	}
+	job := &instructJob{client: client.NewFlowbot(setting.AppConfig().AccessToken), cache: cache}
+	_, err = c.AddJob("*/10 * * * * *", job)
+	if err != nil {
+		flog.Panic(err.Error())
 	}
 	c.Start()
 }

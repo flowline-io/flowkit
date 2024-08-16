@@ -1,10 +1,6 @@
 package info
 
 import (
-	"fmt"
-	"github.com/flowline-io/flowkit/internal/pkg/flog"
-	"github.com/flowline-io/flowkit/internal/pkg/setting"
-	"github.com/gen2brain/beeep"
 	"math"
 	"time"
 
@@ -131,7 +127,7 @@ func (c *clockLayout) applyTheme(_ fyne.Settings) {
 }
 
 // Show loads a clock example window for the specified app context
-func Show(win fyne.Window) fyne.CanvasObject {
+func Show(app fyne.App, win fyne.Window) fyne.CanvasObject {
 	clock := &clockLayout{}
 	//clockWindow.SetOnClosed(func() {
 	//	clock.stop = true
@@ -150,41 +146,4 @@ func Show(win fyne.Window) fyne.CanvasObject {
 	}()
 
 	return content
-}
-
-func f() string {
-	// store
-	store, err := setting.NewConfigStore()
-	if err != nil {
-		flog.Error(err)
-		return ""
-	}
-
-	c, err := store.Config()
-	if err != nil {
-		flog.Error(err)
-		return ""
-	}
-	flog.Info(fmt.Sprintf("%v", c))
-
-	err = store.Save(setting.Config{
-		ServerHost: time.Now().String(),
-	})
-	if err != nil {
-		flog.Error(err)
-		return ""
-	}
-
-	// notify
-	err = beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
-	if err != nil {
-		flog.Error(err)
-		return ""
-	}
-	err = beeep.Notify("Title", "Message body", "")
-	if err != nil {
-		panic(err)
-	}
-
-	return ""
 }

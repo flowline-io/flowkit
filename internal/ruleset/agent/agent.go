@@ -11,17 +11,18 @@ import (
 )
 
 func Cron() {
-	c := cron.New(cron.WithSeconds())
-	// agent job
-	if setting.DefaultConfig().AccessToken != "" {
-		cache, err := bigcache.New(context.Background(), bigcache.DefaultConfig(24*time.Hour))
-		if err != nil {
-			flog.Panic(err.Error())
-		}
-		job := &agentJob{cache: cache, client: client.NewFlowbot(setting.DefaultConfig().AccessToken)}
-		job.RunClipboard(c)
-		job.RunAnki(c)
-		job.RunDev(c)
+	if setting.AppConfig().AccessToken == "" {
+		return
 	}
+	// agent job
+	c := cron.New(cron.WithSeconds())
+	cache, err := bigcache.New(context.Background(), bigcache.DefaultConfig(24*time.Hour))
+	if err != nil {
+		flog.Panic(err.Error())
+	}
+	job := &agentJob{cache: cache, client: client.NewFlowbot(setting.AppConfig().AccessToken)}
+	job.RunClipboard(c)
+	job.RunAnki(c)
+	job.RunDev(c)
 	c.Start()
 }
