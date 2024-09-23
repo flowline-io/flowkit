@@ -7,7 +7,7 @@ toolchain go1.21.4
 require (
 	fyne.io/fyne/v2 v2.5.1
 	github.com/allegro/bigcache/v3 v3.1.0
-	github.com/go-resty/resty/v2 v2.15.1
+	github.com/go-resty/resty/v2 v2.15.2
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/gookit/event v1.1.2
 	github.com/json-iterator/go v1.1.12
